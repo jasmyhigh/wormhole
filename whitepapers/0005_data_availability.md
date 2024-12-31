@@ -82,7 +82,7 @@ To facilitate this, a new "non-voting" mode will be added to guardiand to allow 
 
 We use the (chain, emitter, sequence) tuple as global identifier. The digest is not suitable as a global identifier, since it is not known at message publication time. Instead, all contracts make the sequence number available to the caller when publishing a message, which the caller then surfaces to the client. Chain and emitter addresses are static.
 
-This design deprecates existing usage of the digest as primary global identifier for messages in log messages and other user- and operator-facing interfaces, aiding troubleshooting. This a presentation layer change only - the digest continues to be used for replay protection and signature verification.
+This design deprecates existing usage of the digest as primary global identifier for messages in log messages and other user- and operator-facing interfaces, aiding troubleshooting. This is a presentation layer change only - the digest continues to be used for replay protection and signature verification.
 
 The guardiand submission state machine will be refactored to maintain aggregation state for observed VAAs in the local key-value store, rather than in-memory. This has the nice side effect of removing the timeout for observed-but-incomplete VAAs, allowing them to be completed asynchronously when missing nodes are brought back up and use chain replay to catch up on missed blocks.
 
